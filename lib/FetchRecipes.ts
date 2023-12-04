@@ -19,7 +19,6 @@ export async function fetchAllRecipes(url: string): Promise<RecipeListResult | u
 
 export async function fetchRecipes(url: string): Promise<RecipeResult | undefined> {
   try {
-    console.log('Trying to fetch', url);
     
     const res = await fetch(url);
 
@@ -27,9 +26,7 @@ export async function fetchRecipes(url: string): Promise<RecipeResult | undefine
     if (!res.ok) throw new Error("Failed to fetch recipes \n");
     
     const recipeResult: RecipeResult = await res.json();
-    console.log('Got the response: ', recipeResult);
     const parsedData = RecipeResultSchema.parse(recipeResult);
-    console.log('Parsing data: ', parsedData);
     
     return parsedData;
   } catch (e) {
