@@ -14,9 +14,14 @@ const RecipeSchema = z.object({
   description: z.string(),
 });
 
-export const RecipeResultSchema = z.object({
+export const RecipeListResultSchema = z.object({
   data: z.array(RecipeSchema)
+});
+
+export const RecipeResultSchema = z.object({
+  data: RecipeSchema
 });
 
 export type Recipe = z.infer<typeof RecipeSchema>;
 export type RecipeResult = z.infer<typeof RecipeResultSchema>;
+export type RecipeListResult = z.infer<typeof RecipeListResultSchema>;
