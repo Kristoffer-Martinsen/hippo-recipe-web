@@ -6,12 +6,12 @@ const IngredientSchema = z.object({
   unit: z.string(),
 });
 
-export type Ingredient = z.infer<typeof IngredientSchema>;
-
 const RecipeSchema = z.object({
   id: z.number(),
   name: z.string(),
   description: z.string(),
+  ingredients: z.array(IngredientSchema),
+  imageURL: z.string(),
 });
 
 export const RecipeListResultSchema = z.object({

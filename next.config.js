@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/api/:3000*',
-  //       destination: 'http://localhost:5037*'
-  //     }
-  //   ]
-  // }
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdne-hippo-recipe-bad8dfdnfhh6e5hu.z01.azurefd.net',
+        port: '',
+        pathname: '/web/**'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig
