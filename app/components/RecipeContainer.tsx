@@ -8,8 +8,7 @@ type Props = {
 
 export default function RecipeContainer({ recipe }: Props) {
   return (
-    <div key={recipe.id} className="h-64 p-4 bg-primary-dark rounded-xl relative overflow-hidden text-secondary">
-      <Link href={`recipes/${recipe.id}`}>
+    <div key={recipe.id} className="grow h-64 p-4 bg-primary-dark rounded-xl relative overflow-hidden text-secondary">
         <Image
           src={recipe.imageURL}
           alt="A picture of the recipe"
@@ -18,7 +17,6 @@ export default function RecipeContainer({ recipe }: Props) {
         />
         <h2>{recipe.name}</h2>
         <p>{recipe.description}</p>
-      </Link>
     </div>
   )
 }
