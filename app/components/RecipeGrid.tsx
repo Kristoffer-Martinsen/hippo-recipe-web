@@ -11,7 +11,7 @@ export default async function RecipeGrid() {
   if (!recipes) return <h2 className="m-4 text-2xl font-bold">No recipes found</h2>
 
   return (
-    <main className="px-2 my-3 grid gap-2 grid-cols-gallery">
+    <main className="px-2 my-6 grid gap-2 grid-cols-gallery">
       {recipes.data.map(recipe => (
         <RecipeContainer recipe={recipe} />
       ))}

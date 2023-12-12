@@ -17,7 +17,7 @@ export default async function page({ params: { id }}: Props) {
   if (!recipe) return <h2>No Recipe found</h2>
 
   return (
-    <div>
+    <div className="my-5">
       <RecipeContainer recipe={recipe.data} />
       {recipe.data.ingredients.map(ingredient => (
         <ul>
