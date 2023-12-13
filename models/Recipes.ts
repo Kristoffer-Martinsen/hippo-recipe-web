@@ -6,12 +6,18 @@ const IngredientSchema = z.object({
   unit: z.string(),
 });
 
+const InstructionStepSchema = z.object({
+  id: z.number(),
+  instruction: z.string(),
+})
+
 const RecipeSchema = z.object({
   id: z.number(),
   name: z.string(),
   description: z.string(),
   ingredients: z.array(IngredientSchema),
   imageURL: z.string(),
+  steps: z.array(InstructionStepSchema),
 });
 
 export const RecipeListResultSchema = z.object({

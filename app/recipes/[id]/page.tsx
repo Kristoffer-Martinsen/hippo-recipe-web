@@ -3,6 +3,8 @@ import RecipeContainer from "@/app/components/RecipeContainer";
 import { fetchRecipes } from "@/lib/FetchRecipes";
 import env from "@/lib/env";
 import IngredientList from "@/app/components/IngredientList";
+import Image from 'next/image';
+import InstructionStepList from "@/app/components/InstructionStepList";
 
 type Props = {
   params: {
@@ -17,9 +19,19 @@ export default async function page({ params: { id }}: Props) {
   if (!recipe) return <h2>No Recipe found</h2>
 
   return (
-    <div className="flex flex-row my-5">
-      <IngredientList ingredients={recipe.data.ingredients}/>
-      <RecipeContainer recipe={recipe.data} />
+    <div className="my-5">
+        <h1>{recipe.data.name}</h1>
+        <Image
+          src={recipe.data.imageURL}
+          alt="A picture of the recipe"
+          width={1000}
+          height={200}
+        />
+        <h1>{recipe.data.description}</h1>
+      <div className="flex flex-row">
+        <IngredientList ingredients={recipe.data.ingredients}/>
+        <InstructionStepList steps={recipe.data.steps} />
+      </div>
     </div>
   )
 }
