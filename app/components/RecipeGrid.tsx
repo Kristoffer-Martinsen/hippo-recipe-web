@@ -14,9 +14,11 @@ export default async function RecipeGrid() {
   return (
     <main className=" px-2 my-6 grid gap-2 grid-cols-4">
       {recipes.data.map(recipe => (
-        <Link key={recipe.id} href={`recipes/${recipe.id}`}>
-          <RecipeContainer recipe={recipe} />
-        </Link>
+        <div key={recipe.id}>
+          <Link href={`recipes/${recipe.id}`}>
+            <RecipeContainer recipe={recipe} />
+          </Link>
+        </div>
       ))}
     </main>
   )

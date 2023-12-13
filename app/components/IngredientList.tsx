@@ -4,6 +4,8 @@ type Props = {
 
 export default function IngredientList({ ingredients }: Props) {
   
+  if (!ingredients) return <h2>No ingredients found</h2>
+
   return (
     <ul className="m-5">
         {ingredients.map(ingredient => (

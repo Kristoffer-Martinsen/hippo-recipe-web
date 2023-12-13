@@ -3,6 +3,9 @@ type Props = {
 }
 
 export default function InstructionStepList({ steps}: Props) {
+
+  if (!steps) return <h2>No instructions found</h2>
+
   return (
     <ul>
       {steps.map(step => (
