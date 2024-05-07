@@ -1,6 +1,6 @@
 export default function TagList() {
   return (
-    <div className="m-5">
+    <div className="">
       <ul className="flex flex-col gap-4">
         <li>Example tag 1</li>
         <li>Example tag 2</li>

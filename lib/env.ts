@@ -1,7 +1,7 @@
 import { cleanEnv, str } from "envalid";
 
 const env = cleanEnv(process.env, {
-  AZURE_URL: str()
+  RECIPE_API: str()
 })
 
 export default env;

@@ -6,7 +6,6 @@ export async function fetchAllRecipes(url: string): Promise<RecipeListResult | u
     
     const res = await fetch(url, {next: {revalidate: 30}});
     
-    
     if (!res.ok) throw new Error("Failed to fetch recipes \n");
 
     const recipeResult: RecipeListResult = await res.json();
