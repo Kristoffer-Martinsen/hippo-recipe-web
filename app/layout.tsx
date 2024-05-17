@@ -1,3 +1,5 @@
+import * as React from "react";
+import {NextUIProvider} from "@nextui-org/react";
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -16,13 +18,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='bg-primary text-text-primary'>
-      <body className={inter.className}>
-        <Navbar />
-        <main className='max-w-6xl mx-auto ml-4'>
-          {children}
-        </main>
-      </body>
-    </html>
+
+      <html lang="en" className='bg-primary text-text-primary'>
+          <body className={inter.className}>
+          <NextUIProvider>
+            <Navbar />
+              <main className='max-w-6xl mx-auto ml-4'>
+                {children}
+              </main>
+            </NextUIProvider>
+          </body>
+      </html>
+
   )
 }
