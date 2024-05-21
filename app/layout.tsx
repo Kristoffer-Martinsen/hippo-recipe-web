@@ -18,14 +18,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-
-      <html lang="en" className='bg-primary text-text-primary'>
+      <html lang="en" className="bg-sky-50 ">
           <body className={inter.className}>
           <NextUIProvider>
             <Navbar />
-              <main className='max-w-6xl mx-auto ml-4'>
-                {children}
-              </main>
+            <main className='max-w-6xl mx-auto ml-4'>
+              {children}
+            </main>
             </NextUIProvider>
           </body>
       </html>
