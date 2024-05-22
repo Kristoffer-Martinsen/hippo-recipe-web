@@ -6,6 +6,7 @@ export default function Navbar() {
       <h1 className="mx-8">Hippo Recipe App</h1>
       <Link href="/">Home</Link>
       <Link href="/post-recipe">Add Recipe</Link>
+      <Link href="/meal-planner">Meal planner</Link>
     </nav>
   )
 }

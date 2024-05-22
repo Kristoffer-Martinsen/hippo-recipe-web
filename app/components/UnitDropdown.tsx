@@ -1,18 +1,24 @@
 import React from "react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 
-export default function UnitDropdown() {
-  const [selectedKeys, setSelectedKeys] = React.useState(new Set(["grams"]));
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(", "),
-    [selectedKeys]
-  );
+interface UnitDropdownProps {
+  onUnitChange: (unit: string) => void;
+}
+
+export default function UnitDropdown({onUnitChange}: UnitDropdownProps) {
+  const [selectedKey, setSelectedKey] = React.useState(new Set(["grams"]));
+
+  const handleSelectionChange = (keys: React.Key[]) => {
+    const selected = Array.from(keys)[0] as string;
+    setSelectedKey(new Set([selected]));
+    onUnitChange(selected)
+  }
 
   return (
     <Dropdown>
       <DropdownTrigger>
         <Button variant="bordered">
-          {selectedValue}
+          {selectedKey}
         </Button>
       </DropdownTrigger>
       <DropdownMenu
@@ -20,8 +26,8 @@ export default function UnitDropdown() {
         variant="flat"
         disallowEmptySelection
         selectionMode="single"
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}>
+        selectedKeys={selectedKey}
+        onSelectionChange={handleSelectionChange}>
         <DropdownItem key="grams">grams</DropdownItem>
         <DropdownItem key="ml">ml</DropdownItem>
         <DropdownItem key="teskje">teskje</DropdownItem>
