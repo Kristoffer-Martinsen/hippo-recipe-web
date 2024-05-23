@@ -44,7 +44,7 @@ export function RecipeForm() {
   }
 
   const createRecipeWithLists = createRecipeAction.bind(null, {
-    ingredients: [ingredients],
+    ingredients: ingredients,
     steps: steps
   });
 
