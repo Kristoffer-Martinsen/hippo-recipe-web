@@ -1,8 +1,9 @@
-export async function createRecipeAction(formData: FormData ) {
+export async function createRecipeAction(
+    lists: { ingredients: any, steps: any },
+    formData: FormData
+) {
   const recipeName = formData.get("recipe") as string;
   const description = formData.get("description") as string;
-  const ingredients = formData.getAll("ingredients") as string[];
-  const steps = formData.getAll("steps") as string[];
   
   const imageURL = formData.get("imageURL") as string;
   
@@ -11,8 +12,8 @@ export async function createRecipeAction(formData: FormData ) {
     body: JSON.stringify({
       name: recipeName,
       description: description,
-      ingredients: ingredients,
-      steps: steps,
+      ingredients: lists.ingredients,
+      steps: lists.steps,
       imageURL
     }),
     headers: {

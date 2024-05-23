@@ -1,7 +1,7 @@
 'use client'
 
 import { createRecipeAction } from "@/lib/actions";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 
 import UnitDropdown from "./UnitDropdown";
@@ -43,14 +43,14 @@ export function RecipeForm() {
     setStep(e.target.value);
   }
 
-  const formData = new FormData();
-  formData.set("ingredients", JSON.stringify(ingredients));
-  formData.set("steps", JSON.stringify(steps));
-
+  const createRecipeWithLists = createRecipeAction.bind(null, {
+    ingredients: [ingredients],
+    steps: steps
+  });
 
   return (
       <form className="mx-auto my-6 space-y-4 flex flex-col text-center" 
-        action={createRecipeAction.bind(null, formData)}>
+        action={createRecipeWithLists}>
         <label htmlFor="recipe">Recipe</label>
         <Input name="recipe" /> 
         <label htmlFor="description">Description</label>
