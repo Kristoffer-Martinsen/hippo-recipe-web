@@ -17,6 +17,7 @@ const RecipeSchema = z.object({
   description: z.string(),
   ingredients: z.array(IngredientSchema),
   imageURL: z.string(),
+  amount: z.number(),
   steps: z.array(InstructionStepSchema),
 });
 

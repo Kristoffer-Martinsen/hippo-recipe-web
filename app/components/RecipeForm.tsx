@@ -5,11 +5,11 @@ import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
 
 import UnitDropdown from "./UnitDropdown";
-import { useFormState } from "react-dom";
 
 interface Ingredient {
   name: string;
   unit: string;
+  amount: string;
 }
 
 interface Step {
@@ -19,13 +19,14 @@ interface Step {
 export function RecipeForm() {
   const [ingredient, setIngredient] = useState<string>("");
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  const [amount, setAmount] = useState<string>("");
   const [unit, setUnit] = useState<string>("grams");
   const [step, setStep] = useState<string>("");
   const [steps, setSteps] = useState<Step[]>([]);
 
   const addIngredient = () => {
     if (ingredient.trim() !== "") {
-      setIngredients([...ingredients, {name: ingredient, unit: unit}]);
+      setIngredients([...ingredients, { name: ingredient, unit: unit, amount: amount }]);
       setIngredient("");
     }
   }
@@ -35,7 +36,7 @@ export function RecipeForm() {
   }
 
   const addStep = () => {
-    setSteps([...steps, {instruction: step}])
+    setSteps([...steps, { instruction: step }])
     setStep("");
   }
 
@@ -43,10 +44,24 @@ export function RecipeForm() {
     setStep(e.target.value);
   }
 
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(e.target.value);
+  }
+
   const createRecipeWithLists = createRecipeAction.bind(null, {
     ingredients: ingredients,
-    steps: steps
+    steps: steps,
+    amount: amount,
   });
+
+  const handleDeleteIngredient = () => {
+    console.log("Delete ingredient");
+    
+  }
+
+  const handleDeleteStep = () => {
+    console.log("Delete step");
+  }
 
   return (
       <form className="mx-auto my-6 space-y-4 flex flex-col text-center" 
@@ -62,13 +77,20 @@ export function RecipeForm() {
             onChange={handleIngredientChange}
             value={ingredient}
             />
+          <label htmlFor="amount">Amount</label>
+          <Input 
+            className="w-20" 
+            name="amount" 
+            onChange={handleAmountChange}
+            value={amount}
+            />
           <label htmlFor="unit">Unit</label>
           <UnitDropdown onUnitChange={setUnit}/>
           <Button onPress={addIngredient}>Add</Button>
         </section>
         <ul>
           {ingredients.map((ingredient, index) => (
-            <li key={index}>{ingredient.name} - {ingredient.unit}</li>
+              <li key={index}>{ingredient.name} - {ingredient.unit} <Button onPress={handleDeleteIngredient}>X</Button></li>
           ))}
         </ul>
         <section className="flex flex-row space-x-8 mx-auto w-3/5">
@@ -82,7 +104,7 @@ export function RecipeForm() {
         </section>
         <ul>
           {steps.map((step, index) => (
-            <li key={index}>{step.instruction}</li>
+              <li key={index}>{step.instruction} <Button onPress={handleDeleteStep}>X</Button></li>
           ))}
         </ul>
         <label htmlFor="imageURL">Image</label>

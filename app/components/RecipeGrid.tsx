@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default async function RecipeGrid() {
   const url = `${env.RECIPE_API}/Recipe`;
+  
   const recipes: RecipeListResult | undefined = await fetchAllRecipes(url);
 
   if (!recipes) return <h2 className="m-4 text-2xl font-bold">No recipes found</h2>
