@@ -69,7 +69,7 @@ export function RecipeForm() {
         <Input name="recipe" /> 
         <label htmlFor="description">Description</label>
         <Input name="description" />
-        <section className="flex flex-row space-x-8 mx-auto">
+        <section className="flex flex-row space-x-8">
           <label htmlFor="ingredients">Ingredients</label>
           <Input className="w-80" 
             name="ingredients" 
@@ -89,9 +89,9 @@ export function RecipeForm() {
         </section>
         <ul>
           {ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name} <Button onPress={
+              <li className="flex justify-start mx-8 items-center" key={index}><Button className="mx-8" onPress={
                 () => handleDeleteIngredient(index)
-              }>X</Button></li>
+              }>X</Button> {ingredient.amount} {ingredient.unit} {ingredient.name} </li>
           ))}
         </ul>
         <section className="flex flex-row space-x-8 mx-auto w-3/5">
@@ -105,9 +105,9 @@ export function RecipeForm() {
         </section>
         <ul>
           {steps.map((step, index) => (
-              <li key={index}>{step.instruction} <Button onPress={
+              <li className="flex justify-start mx-8 items-center" key={index}><Button className="mx-8" onPress={
                 () => handleDeleteStep(index)
-              }>X</Button></li>
+              }>X</Button> {step.instruction} </li>
           ))}
         </ul>
         <label htmlFor="imageURL">Image</label>
