@@ -21,15 +21,18 @@ export default async function page({ params: { id }}: Props) {
 
   return (
     <div className="flex flex-col gap-4 my-5">
-        <h1>{recipe.data.name}</h1>
-        <Image
-          src={testImage}
-          alt="A picture of the recipe"
-          width={800}
-          height={200}
-        />
-        <h1>{recipe.data.description}</h1>
-      <div className="flex flex-row gap-10 my-10">
+        <div className="p-6 bg-cyan-950 text-slate-50 rounded-lg">
+          <h1 className="text-2xl">{recipe.data.name}</h1>
+          <Image
+            src={testImage}
+            alt="A picture of the recipe"
+            width={800}
+            height={200}
+          />
+
+          <h1>{recipe.data.description}</h1>
+        </div>
+      <div className="flex flex-row gap-4 my-1">
         <IngredientList ingredients={recipe.data.ingredients}/>
         <InstructionStepList steps={recipe.data.steps} />
       </div>
