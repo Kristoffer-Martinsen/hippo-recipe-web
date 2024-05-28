@@ -54,13 +54,12 @@ export function RecipeForm() {
     amount: amount,
   });
 
-  const handleDeleteIngredient = () => {
-    console.log("Delete ingredient");
-    
+  const handleDeleteIngredient = (index: number) => {
+    setIngredients(ingredients.filter((_, i) => i !== index))
   }
 
-  const handleDeleteStep = () => {
-    console.log("Delete step");
+  const handleDeleteStep = (index: number) => {
+    setSteps(steps.filter((_, i) => i !== index));
   }
 
   return (
@@ -90,7 +89,9 @@ export function RecipeForm() {
         </section>
         <ul>
           {ingredients.map((ingredient, index) => (
-              <li key={index}>{ingredient.name} - {ingredient.unit} <Button onPress={handleDeleteIngredient}>X</Button></li>
+              <li key={index}>{ingredient.amount} {ingredient.unit} {ingredient.name} <Button onPress={
+                () => handleDeleteIngredient(index)
+              }>X</Button></li>
           ))}
         </ul>
         <section className="flex flex-row space-x-8 mx-auto w-3/5">
@@ -104,7 +105,9 @@ export function RecipeForm() {
         </section>
         <ul>
           {steps.map((step, index) => (
-              <li key={index}>{step.instruction} <Button onPress={handleDeleteStep}>X</Button></li>
+              <li key={index}>{step.instruction} <Button onPress={
+                () => handleDeleteStep(index)
+              }>X</Button></li>
           ))}
         </ul>
         <label htmlFor="imageURL">Image</label>

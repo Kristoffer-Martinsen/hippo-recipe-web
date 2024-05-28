@@ -4,6 +4,7 @@ const IngredientSchema = z.object({
   id: z.number(),
   name: z.string(),
   unit: z.string(),
+  amount: z.number()
 });
 
 const InstructionStepSchema = z.object({
@@ -17,7 +18,6 @@ const RecipeSchema = z.object({
   description: z.string(),
   ingredients: z.array(IngredientSchema),
   imageURL: z.string(),
-  amount: z.number(),
   steps: z.array(InstructionStepSchema),
 });
 

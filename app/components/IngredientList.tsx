@@ -1,5 +1,5 @@
 type Props = {
-    ingredients: Array<{id: number, name: string, unit: string}>
+    ingredients: Array<{id: number, name: string, unit: string, amount: number}>
 }
 
 export default function IngredientList({ ingredients }: Props) {
@@ -10,8 +10,9 @@ export default function IngredientList({ ingredients }: Props) {
     <ul>
         {ingredients.map(ingredient => (
           <li key={ingredient.id} className="flex flex-row gap-2">
-            <h3>{ingredient.name}</h3>
+            <h3>{ingredient.amount}</h3>
             <h3>{ingredient.unit}</h3>
+            <h3>{ingredient.name}</h3>
           </li>
         ))}
       </ul>

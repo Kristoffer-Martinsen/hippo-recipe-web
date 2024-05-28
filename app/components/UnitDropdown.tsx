@@ -30,8 +30,9 @@ export default function UnitDropdown({onUnitChange}: UnitDropdownProps) {
         onSelectionChange={handleSelectionChange}>
         <DropdownItem key="grams">grams</DropdownItem>
         <DropdownItem key="ml">ml</DropdownItem>
-        <DropdownItem key="teskje">teskje</DropdownItem>
-        <DropdownItem key="spiseskje">spiseskje</DropdownItem>
+        <DropdownItem key="ts">ts</DropdownItem>
+        <DropdownItem key="ss">ss</DropdownItem>
+        <DropdownItem key="unit">enhet</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

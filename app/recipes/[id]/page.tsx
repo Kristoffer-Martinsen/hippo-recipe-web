@@ -16,8 +16,6 @@ type Props = {
 export default async function page({ params: { id }}: Props) {
   const url = `${env.RECIPE_API}/Recipe/${id}`
   const recipe: RecipeResult | undefined = await fetchRecipes(url);
-  console.log(recipe);
-  
   
   if (!recipe) return <h2>No Recipe found</h2>
 
@@ -31,7 +29,7 @@ export default async function page({ params: { id }}: Props) {
           height={200}
         />
         <h1>{recipe.data.description}</h1>
-      <div className="flex flex-row gap-10">
+      <div className="flex flex-row gap-10 my-10">
         <IngredientList ingredients={recipe.data.ingredients}/>
         <InstructionStepList steps={recipe.data.steps} />
       </div>

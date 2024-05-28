@@ -9,8 +9,8 @@ export default async function RecipeGrid() {
   const url = `${env.RECIPE_API}/Recipe`;
   
   const recipes: RecipeListResult | undefined = await fetchAllRecipes(url);
-
-  if (!recipes) return <h2 className="m-4 text-2xl font-bold">No recipes found</h2>
+  
+  if (recipes?.data === undefined || recipes.data.length == 0) return <h2 className="m-4 text-2xl font-bold">No recipes found</h2>
 
   return (
     <main className=" px-2 grid gap-2 grid-cols-4">
