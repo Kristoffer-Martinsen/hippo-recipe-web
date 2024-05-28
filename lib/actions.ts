@@ -4,7 +4,6 @@ export async function createRecipeAction(
 ) {
   const recipeName = formData.get("recipe") as string;
   const description = formData.get("description") as string;
-  const imageURL = formData.get("imageURL") as string;
   
   const res = await fetch("http://localhost:5037/api/Recipe", {
     method: "POST",
@@ -12,8 +11,7 @@ export async function createRecipeAction(
       name: recipeName,
       description: description,
       ingredients: lists.ingredients,
-      steps: lists.steps,
-      imageURL
+      steps: lists.steps
     }),
     headers: {
       "content-type": "application/json",

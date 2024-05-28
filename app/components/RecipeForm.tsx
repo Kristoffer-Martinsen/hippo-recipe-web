@@ -110,8 +110,6 @@ export function RecipeForm() {
               }>X</Button> {step.instruction} </li>
           ))}
         </ul>
-        <label htmlFor="imageURL">Image</label>
-        <Input name="imageURL" />
         <Button type="submit" className="mx-auto my-6 w-40">Post Recipe</Button>
       </form>
   )

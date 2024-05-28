@@ -28,7 +28,7 @@ export default function UnitDropdown({onUnitChange}: UnitDropdownProps) {
         selectionMode="single"
         selectedKeys={selectedKey}
         onSelectionChange={handleSelectionChange}>
-        <DropdownItem key="grams">grams</DropdownItem>
+        <DropdownItem key="grams">gram</DropdownItem>
         <DropdownItem key="ml">ml</DropdownItem>
         <DropdownItem key="ts">ts</DropdownItem>
         <DropdownItem key="ss">ss</DropdownItem>
