@@ -6,6 +6,8 @@ import IngredientList from "@/app/components/IngredientList";
 import Image from 'next/image';
 import testImage from '@/public/images/stockBannerImage.jpg';
 import InstructionStepList from "@/app/components/InstructionStepList";
+import { RecipeEdit } from "@/app/components/RecipeEdit";
+
 
 type Props = {
   params: {
@@ -22,7 +24,10 @@ export default async function page({ params: { id }}: Props) {
   return (
     <div className="flex flex-col gap-4 my-5">
         <div className="p-6 bg-cyan-950 text-slate-50 rounded-lg">
-          <h1 className="text-2xl">{recipe.data.name}</h1>
+          <div className="flex flex-row justify-between">
+            <h1 className="text-2xl">{recipe.data.name}</h1>
+            <RecipeEdit id={id}/>
+          </div>
           <Image
             src={testImage}
             alt="A picture of the recipe"

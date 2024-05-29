@@ -19,3 +19,19 @@ export async function createRecipeAction(
   }).catch((e) => console.log(e))
   return res;
 };
+
+export async function deleteRecipeAction(id: number) {
+  const res = await fetch(`http://localhost:5037/api/Recipe/${id}`, {
+    method: "DELETE",
+    body: `Recipe with ID: ${id} deleted`,
+    headers: {
+      "content-type": "application/json",
+    }
+  }).catch((e) => console.log(e))
+  return res;
+}
+
+export async function editRecipeAction(id: number) {
+  console.log("edited", id);
+  
+}

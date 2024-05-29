@@ -32,7 +32,7 @@ export default function UnitDropdown({onUnitChange}: UnitDropdownProps) {
         <DropdownItem key="ml">ml</DropdownItem>
         <DropdownItem key="ts">ts</DropdownItem>
         <DropdownItem key="ss">ss</DropdownItem>
-        <DropdownItem key="unit">enhet</DropdownItem>
+        <DropdownItem key="enhet">enhet</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
