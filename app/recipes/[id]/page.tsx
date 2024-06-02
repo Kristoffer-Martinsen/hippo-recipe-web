@@ -1,5 +1,4 @@
 import type { RecipeResult } from "@/models/Recipes";
-import RecipeContainer from "@/app/components/RecipeContainer";
 import { fetchRecipes } from "@/lib/FetchRecipes";
 import env from "@/lib/env";
 import IngredientList from "@/app/components/IngredientList";

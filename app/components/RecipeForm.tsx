@@ -3,7 +3,6 @@
 import { createRecipeAction } from "@/lib/actions";
 import { useState } from "react";
 import { Input, Button } from "@nextui-org/react";
-
 import UnitDropdown from "./UnitDropdown";
 
 interface Ingredient {

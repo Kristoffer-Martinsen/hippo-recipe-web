@@ -4,7 +4,7 @@ import { RecipeListResultSchema, RecipeResultSchema } from "@/models/Recipes";
 export async function fetchAllRecipes(url: string): Promise<RecipeListResult | undefined> {
   try {
     
-    const res = await fetch(url, {next: {revalidate: 30}});
+    const res = await fetch(url, {next: { revalidate: 30, tags: ['recipes'] }});
     
     if (!res.ok) throw new Error("Failed to fetch recipes \n");
 
