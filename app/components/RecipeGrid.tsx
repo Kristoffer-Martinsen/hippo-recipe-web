@@ -4,7 +4,6 @@ import RecipeContainer from "./RecipeContainer";
 import env from "@/lib/env";
 import Link from "next/link";
 
-
 export default async function RecipeGrid() {
   const url = `${env.RECIPE_API}/Recipe`;
   const recipes: RecipeListResult | undefined = await fetchAllRecipes(url);

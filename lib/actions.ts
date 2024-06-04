@@ -24,16 +24,16 @@ export async function createRecipeAction(
       },
     });
 
+    console.log(res.body);
+    
     if (!res.ok) {
       throw new Error('Could not post new recipe');
     }
-
-    await res.json();
-
+    
   } catch (error) {
     console.error(error);
   }
-
+  
   revalidateTag('recipes');
   redirect('/');
 };
