@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { TagSchema } from '@/models/Tag';
 
 const IngredientSchema = z.object({
   id: z.number(),
@@ -18,6 +19,7 @@ const RecipeSchema = z.object({
   description: z.string(),
   ingredients: z.array(IngredientSchema),
   steps: z.array(InstructionStepSchema),
+  tags: z.array(TagSchema)
 });
 
 export const RecipeListResultSchema = z.object({
