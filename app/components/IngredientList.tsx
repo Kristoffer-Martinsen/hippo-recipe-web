@@ -1,9 +1,6 @@
-type Props = {
-    ingredients: Array<{id: number, name: string, unit: string, amount: number}>
-}
+import { Ingredient } from "@/models/Ingredient"
 
-export default function IngredientList({ ingredients }: Props) {
-  
+export default function IngredientList({ ingredients }: { ingredients: Ingredient[]}) {
   if (!ingredients) return <h2>No ingredients found</h2>
 
   return (

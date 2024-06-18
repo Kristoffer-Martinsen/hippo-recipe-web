@@ -11,7 +11,6 @@ export async function fetchAllRecipes(url: string): Promise<RecipeListResult | u
     const recipeResult: RecipeListResult = await res.json();
     
     const parsedData = RecipeListResultSchema.parse(recipeResult);
-
     return parsedData;
   } catch (e) {
     if (e instanceof Error) console.log(e.stack);

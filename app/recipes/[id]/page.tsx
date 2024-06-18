@@ -12,7 +12,6 @@ type Props = {
 export default async function page({ params: { id }}: Props) {
   const url = `${env.RECIPE_API}/Recipe/${id}`
   const recipe: RecipeResult | undefined = await fetchRecipes(url);
-
   
   if (!recipe) return <h2>No Recipe found</h2>
 

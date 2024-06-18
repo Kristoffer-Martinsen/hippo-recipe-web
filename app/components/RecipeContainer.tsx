@@ -7,14 +7,10 @@ import IngredientList from "@/app/components/IngredientList";
 import testImage from '@/public/images/stockBannerImage.jpg';
 import InstructionStepList from "@/app/components/InstructionStepList";
 import { Button } from "@nextui-org/react";
-import { editRecipeAction, deleteRecipeAction } from "@/lib/actions";
+import { deleteRecipeAction } from "@/lib/actions";
 import { RecipeEdit } from "./RecipeEdit";
 
-type Props = {
-    recipe: RecipeResult
-}
-
-export default function RecipeContainer({ recipe }: Props) {
+export default function RecipeContainer({recipe}: {recipe: RecipeResult}) {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
@@ -41,16 +37,15 @@ export default function RecipeContainer({ recipe }: Props) {
                 width={800}
                 height={200}
               />
-
               <h1>{recipe.data.description}</h1>
             </div>
           <div className="flex flex-row gap-4 my-1">
             <IngredientList ingredients={recipe.data.ingredients}/>
-            <InstructionStepList steps={recipe.data.steps} />
+            <InstructionStepList instructionSteps={recipe.data.steps} />
           </div>
         </div>) : (
           <div>
-            <RecipeEdit id={recipe.data.id}/>
+            {/* <RecipeEdit recipe={recipe}/> */}
             <Button 
             className="bg-sky-50 text-cyan-950"
             onPress={() => setIsEditing(false)}

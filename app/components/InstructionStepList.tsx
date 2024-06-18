@@ -1,16 +1,14 @@
-type Props = {
-  steps: Array<{id: number, instruction: string}>
-}
+import { InstructionStep } from "@/models/InstructionStep"
 
-export default function InstructionStepList({ steps}: Props) {
+export default function InstructionStepList({ instructionSteps }: {instructionSteps: InstructionStep[]}) {
 
-  if (!steps) return <h2>No instructions found</h2>
+  if (!instructionSteps) return <h2>No instructions found</h2>
 
   return (
     <ul className="flex flex-col gap-6 p-6 bg-cyan-950 text-slate-50 rounded-lg">
-      {steps.map(step => (
-        <li key={step.id}>
-          <h3>{step.instruction}</h3>
+      {instructionSteps.map(instructionStep => (
+        <li key={instructionStep.id}>
+          <h3>{instructionStep.instruction}</h3>
         </li>
       ))}
     </ul>

@@ -1,8 +1,8 @@
 import type { RecipeListResult } from "@/models/Recipes";
 import { fetchAllRecipes } from "@/lib/FetchRecipes";
-import RecipeContainer from "./RecipeContainer";
 import env from "@/lib/env";
 import Link from "next/link";
+import RecipeGridItem from "./RecipeGridItem";
 
 export default async function RecipeGrid() {
   const url = `${env.RECIPE_API}/Recipe`;
@@ -14,7 +14,7 @@ export default async function RecipeGrid() {
       {recipes.data.map(recipe => (
         <div key={recipe.id}>
           <Link href={`recipes/${recipe.id}`}>
-            <RecipeContainer recipe={recipe} />
+            <RecipeGridItem recipe={recipe} />
           </Link>
         </div>
       ))}
