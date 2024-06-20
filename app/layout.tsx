@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
-import TagList from "./components/TagList";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,8 +23,7 @@ export default function RootLayout({
           <NextUIProvider>
             <Navbar />
             <div className="flex my-5">
-              <TagList />
-              <main className='mx-auto w-4/5'>
+              <main className='w-4/5'>
                 {children}
               </main>
             </div>
