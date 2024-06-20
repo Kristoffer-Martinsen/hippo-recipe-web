@@ -10,7 +10,7 @@ export default async function TagList() {
 
   return (
     <div className="">
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 ml-4">
         {tags.data.map(tag => (
           <li key={tag.id}>{tag.tagName}</li>
         ))}
