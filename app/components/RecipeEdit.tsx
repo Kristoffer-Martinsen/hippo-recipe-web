@@ -1,124 +1,60 @@
 'use client'
-
-import { editRecipeAction } from "@/lib/actions"
-import { Button, Input } from "@nextui-org/react";
-import { useState } from "react";
-import UnitDropdown from "./UnitDropdown";
 import { RecipeResult } from "@/models/Recipes";
-
-interface Ingredient {
-  name: string;
-  unit: string;
-  amount: string;
-}
-
-interface Step {
-  instruction: string;
-}
+import { Button, Input, Textarea } from "@nextui-org/react";
+import Image from 'next/image';
+import testImage from '@/public/images/stockBannerImage.jpg';
+import IngredientList from "@/app/components/IngredientList";
+import InstructionStepList from "@/app/components/InstructionStepList";
 
 type Props = {
-  recipe: RecipeResult
+  recipe: RecipeResult;
+  updateEditing: () => void;
 }
 
-export function RecipeEdit({ recipe }: Props) {
-  const [ingredient, setIngredient] = useState<string>("");
-  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-  const [amount, setAmount] = useState<string>("");
-  const [unit, setUnit] = useState<string>("grams");
-  const [step, setStep] = useState<string>("");
-  const [steps, setSteps] = useState<Step[]>([]);
-
-  const addIngredient = () => {
-    if (ingredient.trim() !== "") {
-      setIngredients([...ingredients, { 
-        name: ingredient, 
-        unit: unit, 
-        amount: amount 
-      }]);
-      setIngredient("");
-    }
-  }
-
-  const handleIngredientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIngredient(e.target.value);
-  }
-
-  const addStep = () => {
-    setSteps([...steps, { instruction: step }])
-    setStep("");
-  }
-
-  const handleStepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStep(e.target.value);
-  }
-
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
-  }
-
-  const editRecipeWithLists = editRecipeAction.bind(null, {
-    ingredients: ingredients,
-    steps: steps,
-    amount: amount,
-  });
-
-  const handleDeleteIngredient = (index: number) => {
-    setIngredients(ingredients.filter((_, i) => i !== index))
-  }
-
-  const handleDeleteStep = (index: number) => {
-    setSteps(steps.filter((_, i) => i !== index));
-  }
-
+export function RecipeEdit({ recipe, updateEditing }: Props) {
+  
   return (
-    <form className="mx-auto my-6 space-y-4 flex flex-col text-center" 
-        action={editRecipeWithLists}>
-        <label htmlFor="recipe">Recipe</label>
-        <Input name="recipe" /> 
-        <label htmlFor="description">Description</label>
-        <Input name="description" />
-        <section className="flex flex-row space-x-8">
-          <label htmlFor="ingredients">Ingredients</label>
-          <Input className="w-80" 
-            name="ingredients" 
-            onChange={handleIngredientChange}
-            value={ingredient}
+    <div>
+      <div className="flex flex-col gap-4 my-5">
+        <div className="p-6 bg-cyan-950 text-slate-50 rounded-lg">
+          <div className="flex flex-row justify-between">
+            <Input 
+              className="text-2xl"
+              defaultValue={recipe.data.name}  
             />
-          <label htmlFor="amount">Amount</label>
-          <Input 
-            className="w-20" 
-            name="amount" 
-            onChange={handleAmountChange}
-            value={amount}
+          </div>
+            <Image
+              className="my-2"
+              src={testImage}
+              alt="A picture of the recipe"
+              width={800}
+              height={200}
             />
-          <label htmlFor="unit">Unit</label>
-          <UnitDropdown onUnitChange={setUnit}/>
-          <Button onPress={addIngredient}>Add</Button>
-        </section>
-        <ul>
-          {ingredients.map((ingredient, index) => (
-              <li className="flex justify-start mx-8 items-center" key={index}><Button className="mx-8" onPress={
-                () => handleDeleteIngredient(index)
-              }>X</Button> {ingredient.amount} {ingredient.unit} {ingredient.name} </li>
-          ))}
-        </ul>
-        <section className="flex flex-row space-x-8 mx-auto w-3/5">
-          <label htmlFor="steps">Steps</label>
-          <Input 
-            name="steps" 
-            onChange={handleStepChange}
-            value={step}
+            <Textarea
+              className=""
+              defaultValue={recipe.data.description}
             />
-          <Button onPress={addStep}>Add</Button>
-        </section>
-        <ul>
-          {steps.map((step, index) => (
-              <li className="flex justify-start mx-8 items-center" key={index}><Button className="mx-8" onPress={
-                () => handleDeleteStep(index)
-              }>X</Button> {step.instruction} </li>
-          ))}
-        </ul>
-        <Button type="submit" className="mx-auto my-6 w-40">Post Recipe</Button>
-      </form>
+          </div>
+          <div className="flex flex-row gap-4 my-1">
+            <div className="w-2/4">
+              <IngredientList 
+                ingredients={recipe.data.ingredients} 
+                editing={true}
+              />
+            </div>
+            <div className="w-2/4">
+              <InstructionStepList 
+                instructionSteps={recipe.data.steps} 
+                editing={true} 
+              />
+            </div>
+          </div>
+        </div>
+      <div className="mx-auto">
+        <Button>Save</Button>
+        <Button
+          onPress={updateEditing}>Cancel</Button>
+      </div>
+    </div>
   )
 }

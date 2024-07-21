@@ -5,7 +5,7 @@ export default function PostRecipe() {
   const url = `${env.RECIPE_API}/Recipe`;
 
   return (
-    <main >
+    <main className="mx-auto w-4/5">
       <RecipeForm />
     </main>
   )

@@ -23,7 +23,7 @@ export default function RootLayout({
           <NextUIProvider>
             <Navbar />
             <div className="flex my-5">
-              <main className='w-4/5'>
+              <main>
                 {children}
               </main>
             </div>

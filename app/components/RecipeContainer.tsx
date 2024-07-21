@@ -13,8 +13,12 @@ import { RecipeEdit } from "./RecipeEdit";
 export default function RecipeContainer({recipe}: {recipe: RecipeResult}) {
   const [isEditing, setIsEditing] = useState(false);
 
+  const updateEditing = () => {
+    setIsEditing(!isEditing)
+  }
+
   return (
-    <div>
+    <div className="mx-10 container">
       {!isEditing ? (
         <div className="flex flex-col gap-4 my-5">
             <div className="p-6 bg-cyan-950 text-slate-50 rounded-lg">
@@ -45,11 +49,7 @@ export default function RecipeContainer({recipe}: {recipe: RecipeResult}) {
           </div>
         </div>) : (
           <div>
-            {/* <RecipeEdit recipe={recipe}/> */}
-            <Button 
-            className="bg-sky-50 text-cyan-950"
-            onPress={() => setIsEditing(false)}
-            >Edit</Button>
+            <RecipeEdit recipe={recipe} updateEditing={updateEditing} />
           </div>
         )
       }
