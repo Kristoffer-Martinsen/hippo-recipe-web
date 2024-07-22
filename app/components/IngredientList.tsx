@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Ingredient } from "@/models/Ingredient"
 import { Input, Button } from "@nextui-org/react"
 import UnitDropdown from "./UnitDropdown";
@@ -8,6 +9,8 @@ type Props = {
 }
 
 export default function IngredientList({ ingredients, editing = false}: Props) {
+  const [unit, setUnit] = useState<string>("grams");
+
   if (!ingredients) return <h2>No ingredients found</h2>
 
   return (
@@ -31,8 +34,9 @@ export default function IngredientList({ ingredients, editing = false}: Props) {
             <li key={ingredient.id} className="flex flex-row gap-2">
               <Input
                 defaultValue={ingredient.amount.toString()} />
-              <Input 
-                defaultValue={ingredient.unit} />
+              <UnitDropdown 
+                onUnitChange={setUnit}
+                defaultUnit={ingredient.unit} />
               <Input 
                 defaultValue={ingredient.name}/>
             </li>
@@ -49,7 +53,8 @@ export default function IngredientList({ ingredients, editing = false}: Props) {
           </div>
           <div className="flex flex-col">
             <label htmlFor="unit">Unit</label>
-            <UnitDropdown onUnitChange=""/>
+            <UnitDropdown 
+                onUnitChange={setUnit} />
           </div>
           <div className="flex flex-col w-3/6">
             <label htmlFor="ingredients">Ingredients</label>
