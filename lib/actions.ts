@@ -23,8 +23,6 @@ export async function createRecipeAction(
         "content-type": "application/json",
       },
     });
-
-    console.log(res.body);
     
     if (!res.ok) {
       throw new Error('Could not post new recipe');
@@ -34,8 +32,8 @@ export async function createRecipeAction(
     console.error(error);
   }
   
-  revalidateTag('recipes');
-  redirect('/');
+  // revalidateTag('recipes');
+  // redirect('/');
 };
 
 export async function deleteRecipeAction(id: number) {
@@ -58,7 +56,7 @@ export async function editRecipeAction(
   const description = formData.get("description") as string;
   try {
     const res = await fetch("http://localhost:5037/api/Recipe", {
-      method: "POST",
+      method: "PUT",
       redirect: 'follow',
       body: JSON.stringify({
         name: recipeName,

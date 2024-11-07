@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const IngredientSchema = z.object({
-  id: z.number(),
+  id: z.number().optional(),
   name: z.string(),
   unit: z.string(),
   amount: z.number()

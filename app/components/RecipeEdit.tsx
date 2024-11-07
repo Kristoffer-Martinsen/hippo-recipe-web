@@ -5,6 +5,9 @@ import Image from 'next/image';
 import testImage from '@/public/images/stockBannerImage.jpg';
 import IngredientList from "@/app/components/IngredientList";
 import InstructionStepList from "@/app/components/InstructionStepList";
+import { useState } from "react";
+import { Ingredient } from "@/models/Ingredient"
+import { InstructionStep } from "@/models/InstructionStep"
 
 type Props = {
   recipe: RecipeResult;
@@ -12,7 +15,41 @@ type Props = {
 }
 
 export function RecipeEdit({ recipe, updateEditing }: Props) {
+  const [ingredient, setIngredient] = useState<string>("");
+  const [ingredients, setIngredients] = useState<Omit<Ingredient, "id">[]>([]);
+  const [amount, setAmount] = useState<string>("");
+  const [unit, setUnit] = useState<string>("grams");
+  const [step, setStep] = useState<string>("");
+  const [steps, setSteps] = useState<Omit<InstructionStep, "id">[]>([]);
+
+  const addIngredient = () => {
+    if (ingredient.trim() !== "") {
+      const newIngredient: Omit<Ingredient, "id"> = {
+        name: ingredient,
+        unit: unit,
+        amount: Number(amount)
+      }
+      setIngredients([...ingredients, newIngredient]);
+      setIngredient("");
+    }
+  }
   
+  const handleIngredientChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIngredient(e.target.value);
+  }
+  
+  const addStep = () => {
+    setSteps([...steps, { instruction: step }])
+    setStep("");
+  }
+  
+  const handleStepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStep(e.target.value);
+  }
+  
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmount(e.target.value);
+  }
   return (
     <div>
       <div className="flex flex-col gap-4 my-5">
