@@ -1,7 +1,6 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 export async function createRecipeAction(payload: {
   recipe: string;
@@ -33,8 +32,7 @@ export async function createRecipeAction(payload: {
     console.error(error);
   }
 
-  // revalidateTag('recipes');
-  // redirect('/');
+  revalidatePath('/');
 }
 
 export async function deleteRecipeAction(id: number) {
@@ -46,8 +44,7 @@ export async function deleteRecipeAction(id: number) {
       'content-type': 'application/json',
     },
   });
-  revalidateTag('recipes');
-  redirect('/');
+  revalidatePath('/');
 }
 
 export async function editRecipeAction(
@@ -60,7 +57,6 @@ export async function editRecipeAction(
   }
 ) {
   const { recipe, description, ingredients, instructions } = payload;
-  console.log('editRecipeAction');
 
   try {
     const res = await fetch(`http://localhost:5037/api/Recipe/${id}`, {
@@ -84,6 +80,5 @@ export async function editRecipeAction(
     console.error(error);
   }
 
-  revalidateTag('recipes');
-  redirect('/');
+  revalidatePath(`/recipes/${id}`);
 }

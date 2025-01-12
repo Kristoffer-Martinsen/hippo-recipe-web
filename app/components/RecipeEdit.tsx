@@ -29,8 +29,8 @@ export function RecipeEdit({ recipe, updateEditing }: Props) {
             : '',
         };
         console.log('Submitting edited recipe');
-
         await editRecipeAction(recipe.id, payload);
+        updateEditing();
       }}
     >
       <div className="my-6 space-y-4">

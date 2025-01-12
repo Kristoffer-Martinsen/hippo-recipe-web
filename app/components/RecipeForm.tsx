@@ -1,9 +1,18 @@
 'use client';
 
 import { createRecipeAction } from '@/lib/actions';
+import { RecipePayload } from '@/types/recipe';
 import { Input, Button, Textarea } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 
 export function RecipeForm() {
+  const router = useRouter();
+
+  const handleCreateRecipe = async (payload: RecipePayload) => {
+    await createRecipeAction(payload);
+    router.push(`/`);
+  };
+
   return (
     <form
       className="w-3/5"
@@ -23,7 +32,7 @@ export function RecipeForm() {
             ? instructions.toString().replace(/\r\n/g, '\n')
             : '',
         };
-        await createRecipeAction(payload);
+        await handleCreateRecipe(payload);
       }}
     >
       <div className="my-6 space-y-4">

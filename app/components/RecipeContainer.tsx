@@ -9,12 +9,19 @@ import { Button } from '@nextui-org/react';
 import { deleteRecipeAction } from '@/lib/actions';
 import { RecipeEdit } from './RecipeEdit';
 import { Recipe } from '@/types/recipe';
+import { useRouter } from 'next/navigation';
 
 export default function RecipeContainer({ recipe }: { recipe: Recipe }) {
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
 
   const updateEditing = () => {
     setIsEditing(!isEditing);
+  };
+
+  const handleDelete = async (id: number) => {
+    await deleteRecipeAction(id);
+    router.push('/');
   };
 
   return (
@@ -33,7 +40,7 @@ export default function RecipeContainer({ recipe }: { recipe: Recipe }) {
                 </Button>
                 <Button
                   className="bg-sky-50 text-cyan-950"
-                  onPress={() => deleteRecipeAction(recipe.id)}
+                  onPress={() => handleDelete(recipe.id)}
                 >
                   Delete
                 </Button>
