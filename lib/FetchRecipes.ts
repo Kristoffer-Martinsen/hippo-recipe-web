@@ -3,6 +3,8 @@ import { Recipe } from '@/types/recipe';
 
 export async function fetchAllRecipes(url: string): Promise<Recipe[]> {
   try {
+    console.log("fetching all recipes");
+    
     const res = await fetch(url, {
       next: { revalidate: 30, tags: ['recipes'] },
     });

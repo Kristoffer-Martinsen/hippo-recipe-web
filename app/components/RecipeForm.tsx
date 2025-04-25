@@ -1,8 +1,8 @@
 'use client';
 
-import { createRecipeAction } from '@/lib/actions';
+import { createRecipeAction } from '@/lib/RecipeActions';
 import { RecipePayload } from '@/types/recipe';
-import { Input, Button, Textarea } from '@nextui-org/react';
+import { Input, Button, Textarea } from "@heroui/react";
 import { useRouter } from 'next/navigation';
 
 export function RecipeForm() {

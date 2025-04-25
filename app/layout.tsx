@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NextUIProvider } from '@nextui-org/react';
+import { HeroUIProvider } from "@heroui/react";
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -20,12 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-sky-50 ">
       <body className={inter.className}>
-        <NextUIProvider>
+        <HeroUIProvider>
           <Navbar />
           <div className="flex my-5">
             <main className="container">{children}</main>
           </div>
-        </NextUIProvider>
+        </HeroUIProvider>
       </body>
     </html>
   );

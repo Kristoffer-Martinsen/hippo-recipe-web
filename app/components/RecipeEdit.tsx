@@ -1,7 +1,7 @@
 'use client';
-import { Button, Input, Textarea } from '@nextui-org/react';
+import { Button, Input, Textarea } from "@heroui/react";
 import { Recipe } from '@/types/recipe';
-import { editRecipeAction } from '@/lib/actions';
+import { editRecipeAction } from '@/lib/RecipeActions';
 
 type Props = {
   recipe: Recipe;

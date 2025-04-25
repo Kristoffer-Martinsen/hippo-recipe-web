@@ -5,16 +5,19 @@ import {
   Selection,
   Listbox,
   ListboxItem,
-} from '@nextui-org/react';
+  Button,
+} from '@heroui/react';
 import { ListboxWrapper } from './ListboxWrapper';
 import { useMemo, useState } from 'react';
 import { Tag } from '@/types/tag';
+import { deleteTagAction } from '@/lib/TagActions';
 
-export default function TagList({ tags }: { tags: Tag | undefined }) {
+export default function TagList({ tags }: { tags: Tag[] | undefined }) {
   const [values, setValues] = useState<Selection>(new Set([]));
   const arrayValues = Array.from(values);
+  
   const topContent = useMemo(() => {
-    if (!arrayValues.length) {
+    if (!arrayValues.length || !tags) {
       return null;
     }
     return (
@@ -24,12 +27,17 @@ export default function TagList({ tags }: { tags: Tag | undefined }) {
         orientation="horizontal"
       >
         {arrayValues.map((value) => {
-          const tag = tags?.data.find((tag) => `${tag.id}` === value);
+          const tag = tags.find((tag) => `${tag.id}` === value);
           return tag ? <Chip key={value}>{tag.tagName}</Chip> : null;
         })}
       </ScrollShadow>
     );
-  }, [arrayValues.length]);
+  }, [arrayValues.length, tags]);
+
+  
+  const handleDeleteTag = async (id: number) => {
+    await deleteTagAction(id);
+  }
 
   if (!tags) return <h2>No tags found</h2>;
 
@@ -38,7 +46,7 @@ export default function TagList({ tags }: { tags: Tag | undefined }) {
       <Listbox
         topContent={topContent}
         className="max-w-xs max-h-[300px] overflow-scroll"
-        items={tags.data}
+        items={tags}
         label="Selected Tags"
         selectionMode="multiple"
         onSelectionChange={setValues}
@@ -48,7 +56,15 @@ export default function TagList({ tags }: { tags: Tag | undefined }) {
           <ListboxItem key={item.id} textValue={item.tagName}>
             <div className="flex gap-2 items-center">
               <div className="flex flex-col">
-                <span className="text-small">{item.tagName}</span>
+                <div>
+                  <span className="text-small">{item.tagName}</span>
+                  <Button
+                    size="sm" 
+                    color="danger"
+                    onPress={() => handleDeleteTag(item.id)}>
+                    X
+                  </Button>
+                </div>
               </div>
             </div>
           </ListboxItem>
