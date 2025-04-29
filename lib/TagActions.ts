@@ -1,17 +1,18 @@
+'use server';
+import { revalidatePath } from "next/cache";
+
 export async function createTagAction(tagName: string): Promise<void> {
-  const url = `${process.env.RECIPE_API}/Tag`;
-  try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ tagName }),
-    });
-    if (!res.ok) throw new Error('failed to create tag');
-  } catch (e) {
-    if (e instanceof Error) console.log(e.stack);
+  if (!tagName) {
+    return; // Add popup or something when no tag name is defined
   }
+  const res = await fetch(`http://localhost:5037/api/Tag`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ tagName }),
+  });
+  revalidatePath('/');
 }
 
 export async function deleteTagAction(id: number): Promise<void> {
@@ -21,7 +22,7 @@ export async function deleteTagAction(id: number): Promise<void> {
       'content-type': 'application/json',
     },
   });
-
+  revalidatePath('/');
 }
 
 export async function editTag(id: number, tagName: string): Promise<void> {

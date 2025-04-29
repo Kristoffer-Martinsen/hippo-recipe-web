@@ -6,13 +6,15 @@ import {
   Listbox,
   ListboxItem,
   Button,
+  Input,
 } from '@heroui/react';
 import { ListboxWrapper } from './ListboxWrapper';
 import { useMemo, useState } from 'react';
 import { Tag } from '@/types/tag';
-import { deleteTagAction } from '@/lib/TagActions';
+import { createTagAction, deleteTagAction } from '@/lib/TagActions';
 
 export default function TagList({ tags }: { tags: Tag[] | undefined }) {
+  const [inputValue, setInputValue] = useState<string>('');
   const [values, setValues] = useState<Selection>(new Set([]));
   const arrayValues = Array.from(values);
   
@@ -39,6 +41,12 @@ export default function TagList({ tags }: { tags: Tag[] | undefined }) {
     await deleteTagAction(id);
   }
 
+  const handleAddTag = async (tagName: string) => {
+    await createTagAction(tagName);
+    setInputValue('');
+  };
+
+
   if (!tags) return <h2>No tags found</h2>;
 
   return (
@@ -55,12 +63,13 @@ export default function TagList({ tags }: { tags: Tag[] | undefined }) {
         {(item) => (
           <ListboxItem key={item.id} textValue={item.tagName}>
             <div className="flex gap-2 items-center">
-              <div className="flex flex-col">
-                <div>
-                  <span className="text-small">{item.tagName}</span>
+              <div className="flex flex-col w-full">
+                <div className="flex flex-row w-full">
+                  <span className="flex text-small">{item.tagName}</span>
                   <Button
                     size="sm" 
                     color="danger"
+                    className='ml-auto'
                     onPress={() => handleDeleteTag(item.id)}>
                     X
                   </Button>
@@ -70,6 +79,21 @@ export default function TagList({ tags }: { tags: Tag[] | undefined }) {
           </ListboxItem>
         )}
       </Listbox>
+      <Input 
+        label="New tag" 
+        placeholder="Enter a new tag.."
+        value={inputValue}
+        onChange={(e) =>  setInputValue(e.currentTarget.value)}
+        onKeyDown={async (e) => {
+          if(e.key === "Enter") {
+            const tagName = inputValue.trim();
+            if(tagName) {
+              await handleAddTag(tagName);
+            }
+          }
+        }}
+      />
     </ListboxWrapper>
+
   );
 }
