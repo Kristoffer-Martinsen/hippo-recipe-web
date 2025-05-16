@@ -1,5 +1,5 @@
 import env from '@/lib/env';
-import { RecipeForm } from '../components/RecipeForm';
+import { RecipeForm } from '../components/recipe/RecipeForm';
 
 export default function PostRecipe() {
   const url = `${env.RECIPE_API}/Recipe`;

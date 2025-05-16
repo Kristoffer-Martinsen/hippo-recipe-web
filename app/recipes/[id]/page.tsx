@@ -1,6 +1,6 @@
 import { fetchRecipes } from '@/lib/FetchRecipes';
 import env from '@/lib/env';
-import RecipeContainer from '@/app/components/RecipeContainer';
+import RecipeContainer from '@/app/components/recipe/RecipeContainer';
 import { Recipe } from '@/types/recipe';
 
 type Props = {

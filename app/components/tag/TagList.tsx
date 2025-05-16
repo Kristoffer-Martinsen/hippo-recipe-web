@@ -8,10 +8,10 @@ import {
   Button,
   Input,
 } from '@heroui/react';
-import { ListboxWrapper } from './ListboxWrapper';
 import { useMemo, useState } from 'react';
 import { Tag } from '@/types/tag';
 import { createTagAction, deleteTagAction } from '@/lib/TagActions';
+import { ListboxWrapper } from '../ui/ListboxWrapper';
 
 export default function TagList({ tags }: { tags: Tag[] | undefined }) {
   const [inputValue, setInputValue] = useState<string>('');

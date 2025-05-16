@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import IngredientList from '@/app/components/IngredientList';
+import IngredientList from '@/app/components/ingredient/IngredientList';
 import testImage from '@/public/images/stockBannerImage.jpg';
-import InstructionStepList from '@/app/components/InstructionStepList';
+import InstructionStepList from '@/app/components/instruction/InstructionStepList';
 import { Button } from "@heroui/react";
 import { deleteRecipeAction } from '@/lib/RecipeActions';
 import { RecipeEdit } from './RecipeEdit';
