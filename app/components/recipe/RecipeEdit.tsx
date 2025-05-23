@@ -1,7 +1,7 @@
 'use client';
 import { Button, Input, Textarea } from "@heroui/react";
 import { Recipe } from '@/types/recipe';
-import { editRecipeAction } from '@/lib/RecipeActions';
+import { editRecipeAction } from '@/lib/actions/RecipeActions';
 
 type Props = {
   recipe: Recipe;

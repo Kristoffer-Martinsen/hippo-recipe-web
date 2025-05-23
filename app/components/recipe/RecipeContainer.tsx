@@ -6,7 +6,7 @@ import IngredientList from '@/app/components/ingredient/IngredientList';
 import testImage from '@/public/images/stockBannerImage.jpg';
 import InstructionStepList from '@/app/components/instruction/InstructionStepList';
 import { Button } from "@heroui/react";
-import { deleteRecipeAction } from '@/lib/RecipeActions';
+import { deleteRecipeAction } from '@/lib/actions/RecipeActions';
 import { RecipeEdit } from './RecipeEdit';
 import { Recipe } from '@/types/recipe';
 import { useRouter } from 'next/navigation';

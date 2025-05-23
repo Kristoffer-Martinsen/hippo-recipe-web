@@ -1,6 +1,6 @@
 'use client';
 
-import { createRecipeAction } from '@/lib/RecipeActions';
+import { createRecipeAction } from '@/lib/actions/RecipeActions';
 import { RecipePayload } from '@/types/recipe';
 import { Input, Button, Textarea } from "@heroui/react";
 import { useRouter } from 'next/navigation';
