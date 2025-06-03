@@ -23,7 +23,7 @@ export default function RootLayout({
         <HeroUIProvider>
           <Navbar />
           <div className="flex my-5">
-            <main className="container">{children}</main>
+            <main className="w-full">{children}</main>
           </div>
         </HeroUIProvider>
       </body>

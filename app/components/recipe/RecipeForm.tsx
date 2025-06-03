@@ -14,6 +14,7 @@ export function RecipeForm() {
   };
 
   return (
+    // Change onSubmit to action to use server actions
     <form
       className="w-3/5"
       onSubmit={async (e) => {

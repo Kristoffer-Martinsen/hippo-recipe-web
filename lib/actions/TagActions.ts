@@ -5,7 +5,7 @@ export async function createTagAction(tagName: string): Promise<void> {
   if (!tagName) {
     return; // Add popup or something when no tag name is defined
   }
-  const res = await fetch(`http://localhost:5037/api/Tag`, {
+  const res = await fetch(`https://localhost:7139/api/Tag`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export async function createTagAction(tagName: string): Promise<void> {
 }
 
 export async function deleteTagAction(id: number): Promise<void> {
-  const res = await fetch(`http://localhost:5037/api/Tag/${id}`, {
+  const res = await fetch(`https://localhost:7139/api/Tag/${id}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',

@@ -1,6 +1,6 @@
 import { Tag } from '@/types/tag';
 import RecipeGrid from './components/recipe/RecipeGrid';
-import { fetchAllTags } from '@/lib/FetchTags';
+import { fetchAllTags } from '@/lib/fetch/FetchTags';
 import TagList from './components/tag/TagList';
 
 export default async function Home() {

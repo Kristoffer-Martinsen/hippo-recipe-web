@@ -11,7 +11,7 @@ export async function createRecipeAction(payload: {
   const { recipe, description, ingredients, instructions } = payload;
 
   try {
-    const res = await fetch('http://localhost:5037/api/Recipe', {
+    const res = await fetch('https://localhost:7139/api/Recipe', {
       method: 'POST',
       redirect: 'follow',
       body: JSON.stringify({
@@ -36,7 +36,7 @@ export async function createRecipeAction(payload: {
 }
 
 export async function deleteRecipeAction(id: number) {
-  const res = await fetch(`http://localhost:5037/api/Recipe/${id}`, {
+  const res = await fetch(`https://localhost:7139/api/Recipe/${id}`, {
     method: 'DELETE',
     redirect: 'follow',
     body: `Recipe with ID: ${id} deleted`,
@@ -59,7 +59,7 @@ export async function editRecipeAction(
   const { recipe, description, ingredients, instructions } = payload;
 
   try {
-    const res = await fetch(`http://localhost:5037/api/Recipe/${id}`, {
+    const res = await fetch(`https://localhost:7139/api/Recipe/${id}`, {
       method: 'PUT',
       redirect: 'follow',
       body: JSON.stringify({

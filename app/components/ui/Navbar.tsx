@@ -7,6 +7,7 @@ export default function Navbar() {
       <Link href="/">Home</Link>
       <Link href="/post-recipe">Add Recipe</Link>
       <Link href="/meal-planner">Meal planner</Link>
+      <Link className="ml-auto mr-5" href="/login">Sign in</Link>
     </nav>
   )
 }
